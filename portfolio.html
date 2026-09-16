@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emmanuel Anim — Medical VA Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#122029;
+    --ink-2:#1A2C36;
+    --ink-3:#213842;
+    --paper:#ECE7DA;
+    --paper-dim:#A9B4B2;
+    --pulse:#E2A63B;
+    --sage:#7DA895;
+    --line:rgba(236,231,218,0.16);
+    --line-strong:rgba(236,231,218,0.30);
+  }
+  @media (prefers-color-scheme: light){
+    :root{
+      --ink:#122029; --ink-2:#1A2C36; --ink-3:#213842;
+      --paper:#ECE7DA; --paper-dim:#A9B4B2; --pulse:#E2A63B; --sage:#7DA895;
+      --line:rgba(236,231,218,0.16); --line-strong:rgba(236,231,218,0.30);
+    }
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:"IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--pulse); color:var(--ink); }
+  a{ color:var(--pulse); }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--pulse); outline-offset:3px; }
+
+  .wrap{ max-width:860px; margin:0 auto; padding:0 28px; }
+
+  h1,h2,h3{ font-family:"Roboto Slab", Georgia, serif; margin:0; color:var(--paper); }
+  .mono{ font-family:"IBM Plex Mono", ui-monospace, monospace; }
+
+  /* ---------- header ---------- */
+  header{
+    border-bottom:1px solid var(--line);
+    padding:22px 0;
+  }
+  .header-row{
+    display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  .id-block{ display:flex; align-items:baseline; gap:14px; }
+  .id-block .name{ font-size:17px; font-weight:600; letter-spacing:0.01em; }
+  .id-block .role{ color:var(--paper-dim); font-size:14px; }
+  .vitals{
+    display:flex; gap:18px; font-size:12.5px; color:var(--paper-dim);
+  }
+  .vitals span b{ color:var(--sage); font-weight:600; }
+
+  /* ---------- hero ---------- */
+  .hero{ padding:64px 0 40px; }
+  .kicker{
+    display:inline-block; font-family:"IBM Plex Mono", monospace; font-size:12.5px;
+    color:var(--sage); border:1px solid var(--line-strong); border-radius:3px;
+    padding:4px 10px; margin-bottom:22px;
+  }
+  .hero h1{ font-size:clamp(34px, 5.4vw, 54px); line-height:1.12; font-weight:700; max-width:15ch; }
+  .hero p.lede{ margin-top:20px; max-width:56ch; color:var(--paper-dim); font-size:17px; }
+
+  .ecg{ margin:36px 0 8px; width:100%; height:64px; overflow:visible; }
+  .ecg path{
+    fill:none; stroke:var(--pulse); stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
+    stroke-dasharray:900; stroke-dashoffset:900;
+    animation:draw 2.6s ease-out forwards;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @media (prefers-reduced-motion: reduce){
+    .ecg path{ animation:none; stroke-dashoffset:0; }
+  }
+
+  .note{
+    font-size:14.5px; color:var(--paper-dim); border-left:2px solid var(--sage);
+    padding:10px 0 10px 16px; max-width:56ch; font-style:italic;
+  }
+
+  /* ---------- section shell ---------- */
+  section{ padding:52px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  .section-head{
+    display:grid; grid-template-columns:120px 1fr; gap:24px; align-items:start;
+  }
+  .section-tag{
+    font-family:"IBM Plex Mono", monospace; font-size:12px; letter-spacing:0.04em;
+    color:var(--paper-dim); padding-top:6px;
+  }
+  .section-tag .n{ display:block; color:var(--pulse); font-size:20px; margin-bottom:4px; }
+  .section-body h2{ font-size:26px; margin-bottom:14px; }
+  .section-body p{ color:var(--paper-dim); font-size:16px; max-width:62ch; }
+  @media (max-width:640px){
+    .section-head{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- log entries (What I Did) ---------- */
+  .log{ margin-top:22px; display:flex; flex-direction:column; }
+  .log-item{
+    display:grid; grid-template-columns:40px 1fr; gap:18px; padding:18px 0;
+    border-top:1px solid var(--line);
+  }
+  .log-item:first-child{ border-top:none; }
+  .log-num{ font-family:"IBM Plex Mono", monospace; color:var(--pulse); font-size:15px; padding-top:2px; }
+  .log-item h3{ font-size:16.5px; font-weight:600; margin-bottom:6px; color:var(--paper); }
+  .log-item p{ margin:0; color:var(--paper-dim); font-size:15px; max-width:60ch; }
+
+  /* ---------- tools tray ---------- */
+  .tray{ margin-top:22px; display:flex; flex-direction:column; }
+  .tray-row{
+    display:grid; grid-template-columns:150px 1fr; gap:18px; padding:14px 0;
+    border-top:1px solid var(--line);
+  }
+  .tray-row:first-child{ border-top:none; }
+  .tray-label{ font-size:13px; color:var(--sage); font-weight:600; padding-top:2px; }
+  .tray-value{ color:var(--paper-dim); font-size:15px; }
+  .tray-value b{ color:var(--paper); font-weight:500; }
+  @media (max-width:640px){
+    .tray-row{ grid-template-columns:1fr; gap:4px; }
+  }
+
+  /* ---------- vitals readout (Result) ---------- */
+  .readouts{
+    margin-top:26px; display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+  }
+  .readout{ background:var(--ink); padding:22px 18px; }
+  .readout .big{ font-family:"Roboto Slab", serif; font-size:34px; color:var(--pulse); line-height:1; }
+  .readout .cap{ margin-top:8px; font-size:13px; color:var(--paper-dim); }
+  @media (max-width:640px){ .readouts{ grid-template-columns:1fr; } }
+
+  /* ---------- pull quote ---------- */
+  blockquote{
+    margin:22px 0 0; padding-left:20px; border-left:2px solid var(--pulse);
+    font-family:"Roboto Slab", serif; font-size:19px; line-height:1.5; color:var(--paper);
+    max-width:56ch;
+  }
+
+  /* ---------- footer ---------- */
+  footer{ padding:44px 0 60px; }
+  .contact-row{
+    display:flex; flex-wrap:wrap; gap:10px 26px; align-items:center;
+    padding-top:18px; border-top:1px solid var(--line);
+  }
+  .contact-row a, .contact-row span{ font-size:14.5px; color:var(--paper-dim); text-decoration:none; }
+  .contact-row a{ color:var(--paper); }
+  .contact-row a:hover{ color:var(--pulse); }
+  footer .fine{ margin-top:18px; font-size:12.5px; color:var(--paper-dim); max-width:60ch; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-row">
+    <div class="id-block">
+      <span class="name">Emmanuel Anim</span>
+      <span class="role">Medical Virtual Assistant</span>
+    </div>
+    <div class="vitals mono">
+      <span>HR <b>72</b></span>
+      <span>SpO₂ <b>98%</b></span>
+      <span>Accra, GH</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" style="border-bottom:none;">
+    <span class="kicker">CHART NO. 0042 — PORTFOLIO CASE STUDY</span>
+    <h1>Fixing the back office a small practice doesn't have time to fix.</h1>
+    <svg class="ecg" viewBox="0 0 700 64" preserveAspectRatio="none">
+      <path d="M0,32 L120,32 L140,32 L152,8 L164,56 L176,32 L200,32 L214,20 L228,32 L700,32" />
+    </svg>
+    <p class="lede">A self-directed training project simulating three of the most common bottlenecks in a solo or telehealth practice — scheduling, insurance verification, and patient intake — solved with the tools a remote Medical VA has on day one.</p>
+    <p class="note">No live patient or client data was used at any stage. This is practice work built to be handed to a real clinic.</p>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-tag"><span class="n">01</span>PROBLEM</div>
+      <div class="section-body">
+        <h2>Three leaks, one back office</h2>
+        <p>Small telehealth and solo-provider practices lose revenue and provider time to the same three gaps: scheduling conflicts and no-shows from manual booking, delayed or inaccurate insurance eligibility checks that push claims into denial, and disorganized intake records that slow down every visit. I set out to simulate solving all three with tools that need no new software purchase.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-tag"><span class="n">02</span>APPROACH</div>
+      <div class="section-body">
+        <h2>What I did</h2>
+        <div class="log">
+          <div class="log-item">
+            <div class="log-num">01</div>
+            <div>
+              <h3>Standardized patient intake in OpenEMR</h3>
+              <p>Built a mock panel of 25 records on the OpenEMR demo platform and standardized intake fields — demographics, insurance ID, chief complaint, allergy flags — so any record could be found in under 10 seconds.</p>
+            </div>
+          </div>
+          <div class="log-item">
+            <div class="log-num">02</div>
+            <div>
+              <h3>Rebuilt the booking system</h3>
+              <p>Designed a shared Google Calendar with color-coded appointment types, buffer times, and automated reminder emails 24 hours ahead of each visit to cut down no-shows.</p>
+            </div>
+          </div>
+          <div class="log-item">
+            <div class="log-num">03</div>
+            <div>
+              <h3>Ran insurance eligibility checks end to end</h3>
+              <p>Cross-checked mock policy numbers against payer rules, caught 5 deliberately seeded errors — expired coverage, mismatched ID, wrong plan tier — and logged every correction in a tracking sheet.</p>
+            </div>
+          </div>
+          <div class="log-item">
+            <div class="log-num">04</div>
+            <div>
+              <h3>Applied a HIPAA-aligned handling checklist</h3>
+              <p>Wrote and followed a data-handling checklist — access logging, minimum necessary use, secure sharing — across every step, consistent with my HIPAA Compliance Training certification.</p>
+            </div>
+          </div>
+          <div class="log-item">
+            <div class="log-num">05</div>
+            <div>
+              <h3>Documented it as a repeatable SOP</h3>
+              <p>Wrote the whole workflow up as a Standard Operating Procedure so a practice could hand it to any new VA and get the same result on day one.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-tag"><span class="n">03</span>TOOLS</div>
+      <div class="section-body">
+        <h2>What it ran on</h2>
+        <div class="tray">
+          <div class="tray-row">
+            <div class="tray-label">EMR / EHR</div>
+            <div class="tray-value"><b>OpenEMR</b> (demo instance) — patient intake, chart navigation, records search</div>
+          </div>
+          <div class="tray-row">
+            <div class="tray-label">Scheduling</div>
+            <div class="tray-value"><b>Google Calendar</b> &amp; Workspace — appointment setup, automated reminders</div>
+          </div>
+          <div class="tray-row">
+            <div class="tray-label">Insurance</div>
+            <div class="tray-value">Manual eligibility verification workflow, tracked in <b>Google Sheets</b></div>
+          </div>
+          <div class="tray-row">
+            <div class="tray-label">Compliance</div>
+            <div class="tray-value">HIPAA data-handling checklist, per certified training</div>
+          </div>
+          <div class="tray-row">
+            <div class="tray-label">Documentation</div>
+            <div class="tray-value"><b>Google Docs</b> for the SOP, <b>Microsoft 365 / Copilot</b> for formatting</div>
+          </div>
+          <div class="tray-row">
+            <div class="tray-label">Clinical base</div>
+            <div class="tray-value">Medical terminology, pharmacology, and patient-care background from BSN coursework and clinical placements</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-tag"><span class="n">04</span>RESULT</div>
+      <div class="section-body">
+        <h2>Readouts</h2>
+        <div class="readouts">
+          <div class="readout">
+            <div class="big">45s → 10s</div>
+            <div class="cap">record lookup time, after standardizing intake fields</div>
+          </div>
+          <div class="readout">
+            <div class="big">5 / 5</div>
+            <div class="cap">seeded insurance errors caught before reaching claims</div>
+          </div>
+          <div class="readout">
+            <div class="big">1 SOP</div>
+            <div class="cap">reusable procedure a clinic could adopt immediately</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-bottom:none;">
+    <div class="section-head">
+      <div class="section-tag"><span class="n">05</span>WHY IT MATTERS</div>
+      <div class="section-body">
+        <h2>For a client</h2>
+        <blockquote>I built this the way I'd approach a real client's back office: find the highest-friction task, fix it with tools that need no new software purchase, and leave behind documentation so the fix outlasts me.</blockquote>
+        <p style="margin-top:18px;">My nursing training means I read a chart or a lab flag correctly the first time, not after a learning curve.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <div class="contact-row">
+    <a href="mailto:animemmanuel325@gmail.com">animemmanuel325@gmail.com</a>
+    <span>+233 20 968 4674</span>
+    <a href="https://www.linkedin.com/in/emmanuel-anim-84969b430" target="_blank" rel="noopener">LinkedIn</a>
+    <span>Accra, Ghana</span>
+  </div>
+  <p class="fine">Full HIPAA Compliance Training certificate, transcript, and OpenEMR walkthrough available on request.</p>
+</footer>
+
+</body>
+</html>
